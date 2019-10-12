@@ -85,10 +85,10 @@
 <body>
 
 
-<form th:action="@{/book/search}" th:method="post" th:object="${bookDetails}" style="width: 50%">
+<form th:action="@{/book/search}" th:method="post" style="width: 50%">
     <div class="container">
         <label><b>Enter book name</b></label>
-        <input type="text" th:name="keyword" placeholder="Enter name" required>
+        <input type="text" name="keyword" placeholder="Enter name" required>
         <button type="submit">Search</button>
     </div>
 </form>

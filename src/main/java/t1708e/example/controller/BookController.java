@@ -21,29 +21,23 @@ public class BookController {
 
     @Autowired
     BookDeatilsRepository bookDeatilsRepository;
-    @RequestMapping(method = RequestMethod.GET)
-    public String index(Model model) {
-        List<BookDetails> bookDetails = bookService.bookDetails();
-        model.addAttribute("bookDetails", bookDetails);
-        return "index";
-    }
-
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String search(Model model){
-        List<BookDetails> books = new ArrayList<>();
-        model.addAttribute("books", books);
-        return "search";
+        List<BookDetails> bookDetails = new ArrayList<>();
+        model.addAttribute("bookDetails", bookDetails);
+        return "index";
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public String searchBook(Model model, @RequestParam("keyword") String keyword){
         if (keyword.isEmpty()){
-            List<BookDetails> bookDetails = new ArrayList<>();
-            model.addAttribute("listBook",bookDetails);
-            return "Search";
+            List<BookDetails> books = new ArrayList<>();
+            model.addAttribute("books",books);
+            return "index";
         }
-        List<BookDetails> books = bookDeatilsRepository.searchBookByName(keyword);
-        model.addAttribute("books", books);
-        return "search";
+        List<BookDetails> bookDetails = bookDeatilsRepository.searchBookByName(keyword);
+        model.addAttribute("bookDetails", bookDetails);
+        return "index";
     }
+
 }

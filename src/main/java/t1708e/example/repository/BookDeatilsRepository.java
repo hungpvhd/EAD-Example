@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface BookDeatilsRepository extends JpaRepository<BookDetails, Integer> {
 
-    @Query("select n from BookDetail as n where n.name like %:name% or n.author like %:name% or n.genre like %:name%")
+    @Query("select n from BookDetails as n where n.name like %:name% or n.author like %:name% or n.genre like %:name%")
     List<BookDetails> searchBookByName(@Param("name") String keyword);
 }
